@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@700&display=swap" rel="stylesheet">
+</head>
+
+<body style="background-color:#EAEAEA;" id="body">
+    <div id="overlay" onclick="closeSidebar()"></div>
+    <div class="laptop-screen">
+        <div id="sidebar">
+            <a href="https://docs.google.com/spreadsheets/d/1e6NoATSnYNbTSIpQ3SmMykV7OPfrgFXyx1CRyr53HJg/edit?usp=sharing"
+                target="_blank" id="item1">
+                <h1></h1>รายงานย้อนหลัง
+            </a>
+            <a href="" target="_blank" id="item3">Source Code</a>
+        </div>
+        <div class="navbar" id="navbar">
+            <img src="img/menu.png" type="button" onclick="openSidebar()" id="nav">
+            <img src="img/x.png" type="button" onclick="closeSidebar()" id="nav1">
+            <script>
+                const mediaQuery = window.matchMedia('(max-width: 660px)')
+                function openSidebar() {
+                    if (mediaQuery.matches) {
+                        document.getElementById('body').style.marginLeft = '40vw';
+                        document.getElementById('sidebar').style.width = '40vw';
+                        document.getElementById('nav1').style.marginLeft = '28vw';
+                        document.getElementById('body').style.transition = 'margin 0.5s';
+                        document.getElementById('nav').style.transform = 'translateX(-10vw)';
+                        document.getElementById('nav').style.transition = '0.5s';
+                        document.getElementById('lab5').style.transform = 'translateX(-10vw)';
+                        document.getElementById('lab5').style.transition = '0.5s';
+                        document.getElementById('date').style.transition = '0.5s';
+                        document.getElementById('date').style.opacity = '0';
+                    }
+                    else {
+                        document.getElementById('body').style.marginLeft = '20vw';
+                        document.getElementById('sidebar').style.width = '20vw';
+                        document.getElementById('nav1').style.marginLeft = '15vw';
+                        document.getElementById('body').style.transition = 'margin 0.5s';
+                        document.getElementById('nav').style.transform = 'translateX(-5vw)';
+                        document.getElementById('nav').style.transition = '0.5s';
+                        document.getElementById('lab5').style.transform = 'translateX(-5vw)';
+                        document.getElementById('lab5').style.transition = '0.5s';
+                    }
+
+                    document.getElementById('sidebar').style.marginLeft = '0';
+                    document.getElementById('sidebar').style.transition = 'width 0.5s';
+                    document.getElementById('nav1').style.visibility = 'visible';
+
+                    document.getElementById('nav1').style.transition = '0.5s';
+                    document.getElementById('nav1').style.opacity = '1';
+                    document.getElementById('overlay').style.visibility = 'visible';
+                    document.getElementById('overlay').style.transition = '0.5s';
+                    document.getElementById('overlay').style.opacity = '1';
+                }
+                function closeSidebar() {
+                    document.getElementById('body').style.marginLeft = '0';
+                    document.getElementById('body').style.transition = 'margin 0.5s';
+                    document.getElementById('nav').style.transform = 'translateX(0vw)';
+                    document.getElementById('nav').style.transition = '0.5s';
+                    document.getElementById('lab5').style.transform = 'translateX(0vw)';
+                    document.getElementById('lab5').style.transition = '0.5s';
+                    document.getElementById('sidebar').style.marginLeft = '0';
+                    document.getElementById('sidebar').style.width = '0';
+                    document.getElementById('sidebar').style.transition = 'width 0.5s';
+                    document.getElementById('nav1').style.marginLeft = '0';
+                    document.getElementById('nav1').style.transition = 'margin 0.5s, opacity 0.2s';
+                    document.getElementById('nav1').style.opacity = '0';
+                    document.getElementById('nav1').style.visibility = 'hidden';
+                    document.getElementById('overlay').style.visibility = 'hidden';
+                    document.getElementById('overlay').style.transition = '0.5s';
+                    document.getElementById('overlay').style.opacity = '0';
+                    document.getElementById('date').style.opacity = '1';
+
+                }
+                function scroll() {
+                    document.getElementById("section").scrollIntoView();
+                }
+            </script>
+            <div class="lab5" id="lab5">LAB5</div>
+            <div class="clock" style="color: white;">
+                <h1 id="clock-hr"></h1>
+                <h1 id="colon">:</h1>
+                <h1 id="clock-min"></h1>
+                <h1 id="n">น.</h1>
+
+                <img src="img/earth-globe.png" id="clock-img">
+                <h1 id="date"></h1>
+            </div>
+            <script>
+                function displayTime() {
+                    var d = new Date();
+                    var hour = d.getHours(); // 0-23
+                    var min = d.getMinutes(); // 0-59
+                    var sec = d.getSeconds(); // 0-59
+                    var day = d.getDate();
+                    var month = d.getMonth() + 1;
+                    var year = d.getFullYear();
+
+
+
+                    if (hour < 10) hour = "0" + hour;
+                    if (min < 10) min = "0" + min;
+                    if (sec < 10) sec = "0" + sec;
+
+                    document.getElementById("clock-hr").innerHTML = hour;
+                    document.getElementById("clock-min").innerHTML = min;
+                    document.getElementById("date").innerHTML = day + "/" + month + "/" + year;
+
+
+                }
+                setInterval(displayTime, 1000);
+            </script>
+        </div>
+
+        <div class="overall-container">
+
+            <div class="bluebox-cover">
+                <div class="bluebox-title">
+                    <h1 style="font-size: 2vw; color: white; margin-top: 0.2vw;">จำนวนคนขณะนี้</h1>
+                </div>
+                <div class="bluebox-border">
+                    <div class="bluebox-in">
+                        <img src="img/people.png" alt="">
+                        <h1 class="value" id="peopleInside" type="text"></h1>
+                        <h2>คน</h2>
+                    </div>
+                </div>
+            </div>
+
+            <div class="inout-cover">
+                <div class="redbox-cover">
+                    <div class="redbox"></div>
+                    <div class="redbox-in">
+                        <img src="img/out.png" alt="">
+                        <h1>ออกไปแล้ว
+                            <h2 class="value" id="peopleOut"></h2>
+                            <h3>ครั้ง</h3>
+                        </h1>
+                    </div>
+                </div>
+                <div class="greenbox-cover">
+                    <div class="greenbox"></div>
+                    <div class="greenbox-in">
+                        <img src="img/in.png" alt="">
+                        <h1>เข้ามาแล้ว<h2 class="value" id="peopleIn"></h2>
+                            <h3>ครั้ง</h3>
+                        </h1>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lightbox-cover">
+                <div class="lb1">
+                    <div class="lb-border" id="bulbBg">
+                        <div class="lb-in" id="bulbIn">
+                            <img src="img/bulb.png" alt="" id="elementToFade">
+                            <img src="img/bulb-off.png" alt="" id="bulbOff">
+                        </div>
+                    </div>
+                    <div class="lbtitlebox">
+                        <h1
+                            style="color: white; font-size: 2vw; display: flex; justify-content: center; margin-top:1vw;">
+                            ROW 1</h1>
+                    </div>
+                    <input type="checkbox" id="check1" style="visibility: hidden; cursor: pointer;">
+                    <label for="check1" class="btn1">
+                        <h1 id="rows">R1</h1>
+                    </label>
+                    <div class="status">
+                        <h1 style="color: #D4D4D4;" id="status"></h1>
+                    </div>
+                </div>
+                <div class="lb2">
+                    <div class="lb-border" id="bulbBg1">
+                        <div class="lb-in" id="bulbIn1">
+                            <img src="img/bulb.png" alt="" id="elementToFade1">
+                            <img src="img/bulb-off.png" alt="" id="bulbOff1">
+                        </div>
+                    </div>
+                    <div class="lbtitlebox" id="ttb1">
+                        <h1
+                            style="color: white; font-size: 2vw; display: flex; justify-content: center; margin-top:1vw;">
+                            ROW 2</h1>
+                    </div>
+                    <input type="checkbox" id="check2" style="visibility: hidden;">
+                    <label for="check2" class="btn2">
+                        <h1 id="rows">R1</h1>
+                    </label>
+                    <div class="status">
+                        <h1 style="color: #D4D4D4;" id="status1"></h1>
+                    </div>
+                </div>
+            </div>
+
+            <div class="devbox">
+                <div class="rpibox">
+                    <div class="devtitlebox">
+                        <h1
+                            style="color: white; font-size: 2vw; display: flex; justify-content: center; margin-top: 0.4vw;">
+                            RPI 4</h1>
+                    </div>
+                    <img src="img/rpi.png" alt="">
+                    <div class="greendot" id="dot"></div>
+                    <h1 style="position:absolute;  left: 6vw; margin-top: 12.2vw; font-size: 2vw;" id="dev">ONLINE</h1>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="stat-container" id="#section1">
+
+
+            <div class="chartBox">
+                <div class="chart-title">
+                    <div id="dot"></div>
+                    <h1>การเข้า-ออก</h1>
+                    <div id=""></div>
+                    <h1 id="j"></h1>
+                </div>
+                <canvas id="myChart"></canvas>
+            </div>
+
+
+
+            <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js/dist/chart.umd.min.js"></script>
+            <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+            <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
+            <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js"></script>
+            <script>
+                // Import the functions you need from the SDKs you need
+                // TODO: Add SDKs for Firebase products that you want to use
+                // https://firebase.google.com/docs/web/setup#available-libraries
+
+
+                // Your web app's Firebase configuration here (Do not use the existing configuration)
+                const firebaseConfig = {
+                    apiKey: "AIzaSyC9t5ppjAWpulEhz8E4S6pUD7ceNhLBQ_g",
+                    authDomain: "webapp-b33f6.firebaseapp.com",
+                    databaseURL: "https://webapp-b33f6-default-rtdb.asia-southeast1.firebasedatabase.app",
+                    projectId: "webapp-b33f6",
+                    storageBucket: "webapp-b33f6.appspot.com",
+                    messagingSenderId: "917044709858",
+                    appId: "1:917044709858:web:2067945324507074e811bb",
+                    measurementId: "G-P458HC4P1W"
+                };
+
+                // Initialize Firebase
+                firebase.initializeApp(firebaseConfig);
+
+                // getting reference to the database
+                var database = firebase.database();
+                var db = firebase.firestore();
+
+
+                var pplRef = database.ref('number_people/people_list');
+                var timeRef = database.ref('number_people/time_list');
+
+                var d = new Date();
+                var min = d.getMinutes(); // 0-59
+                var day = d.getDate();
+                var month = d.getMonth() + 1;
+                var year = d.getFullYear();
+                var dates = [];
+                //     function getDaysInMonth(month) {
+                //     // Ensure the month is within the valid range (1 to 12)
+                //     if (month < 1 || month > 12) {
+                //         return "Invalid month";
+                //     }
+
+                //     // Array to store the number of days in each month
+                //     const daysInMonth = [0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+
+                //     // Return the number of days for the given month
+                //     return daysInMonth[month];
+                // }
+
+                //     const daysInMonth = getDaysInMonth(month);
+                //     for(var i = 1; i<=daysInMonth ; i++){
+                //         dates.push(i);
+                //     }
+                //     console.log(dates)
+
+                //     var people = [40,12,6,9,12,3,9,40,12,6,9,12,3,9,40,111,6,20,12,3,9,40,30,6,9,12,50,9,40,12]; // Array to store people values
+                // Initialize the chart for light status
+
+                var myChart;
+                var ppllist = [];
+                var timelist = [];
+                var people;
+                var time;
+
+                // Function to create or update the chart
+                function graph() {
+                    // Check if both 'ppllist' and 'timelist' are not empty
+                    if (ppllist.length > 0 && timelist.length > 0) {
+                        string_people = "[" + ppllist + "]";
+                        people = JSON.parse(string_people);
+                        console.log("Current People array:", people);
+
+                        const elements = timelist.split(",");
+                        const time = elements.map(element => `${element}`);
+                        console.log("Current Time array:", time);
+
+                        // If the chart is not initialized yet, initialize it
+                        if (!myChart) {
+                            // Define the data for the chart
+                            const data = {
+                                labels: time,
+                                datasets: [{
+                                   
+                                    data: people,
+                                    fill: false,
+                                    backgroundColor: 'rgb(255, 99, 132)',
+                                    borderColor: 'rgb(255, 99, 132)',
+                                    tension: 0.1
+                                }]
+                            };
+
+                            // Define the configuration for the chart
+                            const config = {
+                                type: 'line', // This can be 'line', 'pie', etc., based on your needs
+                                data: data,
+                                options: {
+                                    scales: {
+                                        x: {
+                                            grid: {
+                                                display: false, // Removes the grid lines from the x-axis
+                                            }
+                                        },
+                                        y: {
+                                            grid: {
+                                                display: false, // Removes the grid lines from the y-axis
+                                            },
+                                            beginAtZero: true, // Ensures the y-axis starts at 0
+                                            ticks: {
+                                                stepSize: 1,
+                                            }
+                                        }
+                                    },
+                                    plugins: {
+                                        legend: {
+                                            display: false // Set to false if you don't want to show the dataset label
+                                        }
+                                    }
+                                }
+                            };
+
+                            // Initialize the chart after a delay (e.g., 1500 milliseconds)
+                            setTimeout(() => {
+                                myChart = new Chart(
+                                    document.getElementById('myChart'),
+                                    config
+                                );
+                            }, 1500);
+                        } else {
+                            // If the chart is already initialized, update the chart data and labels
+                            myChart.data.labels = time;
+                            myChart.data.datasets[0].data = people;
+                            myChart.update();
+                        }
+                    }
+                }
+
+                // Firebase callback to listen for changes
+                pplRef.on('value', function (getdata1) {
+                    ppllist = getdata1.val();
+                    // Call the graph function to update the chart
+                    graph();
+                });
+                timeRef.on('value', function (getdata2) {
+                    timelist = getdata2.val();
+                    // Call the graph function to update the chart
+                    graph();
+                });
+
+
+
+                // Optional: Output Chart.js version (ensure element with id 'chartVersion' exists)
+                // const chartVersion = document.getElementById('chartVersion');
+                // chartVersion.innerText = Chart.version;
+            </script>
+
+            <!-- <div class="stat-grid">
+                <div>
+                    <img src="img/in-dark.png" alt="">
+                    <h1>ยอดการเข้าทั้งหมด</h1>
+                    <a>
+                        <h3>2.5k</h3>
+                        <h4>ครั้ง</h4>
+                    </a>
+                </div>
+
+                <div>
+                    <img src="img/out-dark.png" alt="">
+                    <h1>ยอดการออกทั้งหมด</h1>
+                    <a>
+                        <h3>2.5k</h3>
+                        <h4>ครั้ง</h4>
+                    </a>
+                </div>
+            </div>
+
+
+            <div class="stat-grid2">
+                <div>
+                    <img src="img/lighting.png" alt="">
+                    <h1 style="color: black; position: absolute; top: 6vw; left: 11vw;">total</h1>
+                    <h1>ชั่วโมงการเปิดไฟทั้งหมด</h1>
+                    <a>
+                        <h3>2.5k</h3>
+                        <h4>ชม.</h4>
+                    </a>
+                </div>
+
+                <div>
+                    <img src="img/lighting.png" alt="">
+                    <h1 style="color: black; position: absolute; top: 6vw; left: 34.8vw;">avg</h1>
+                    <h1>ค่าเฉลี่ย</h1>
+                    <a>
+                        <h3>~4</h3>
+                        <h4>ชม.</h4>
+                    </a>
+                </div>
+            </div>
+
+        </div> -->
+
+
+        <script>
+            // Import the functions you need from the SDKs you need
+            // TODO: Add SDKs for Firebase products that you want to use
+            // https://firebase.google.com/docs/web/setup#available-libraries
+
+
+            // Your web app's Firebase configuration here (Do not use the existing configuration)
+
+            // Initialize Firebase
+
+            // getting reference to the database
+            var database = firebase.database();
+            var db = firebase.firestore();
+
+
+            var dataRef1 = database.ref('number_people/number_people_inside');
+            var dataRef2 = database.ref('number_people/number_people_in');
+            var dataRef3 = database.ref('number_people/number_people_out');
+            var cpuRef = database.ref('number_people/cpu_temp');
+
+            var dataRef4 = database.ref('lightStatus/row1');
+            var dataRef5 = database.ref('lightStatus/row2');
+            var dataRef6 = database.ref('Rec/CurrentDate');
+            var dataRef7 = database.ref('Rec/RecCount');
+            var devDataRef = database.ref('devStatus/RPI');
+            var devDataRef1 = database.ref('devStatus/ESP32');
+
+            var firebaseRef = firebase.database().ref("lightStatus");
+            var firebaseRef1 = firebase.database().ref("Rec");
+
+
+            const toggleSwitch1 = document.getElementById('check1');
+            const toggleSwitch2 = document.getElementById('check2');
+
+            const hideElement = document.getElementById('elementToFade');
+            const hideElement1 = document.getElementById('elementToFade1');
+            const bulb = document.getElementById('bulbOff');
+            const bulb1 = document.getElementById('bulbOff1');
+            const bulbBg = document.getElementById('bulbBg');
+            const bulbBg1 = document.getElementById('bulbBg1');
+            const bulbIn = document.getElementById('bulbIn');
+            const bulbIn1 = document.getElementById('bulbIn1');
+            const status = document.getElementById('status');
+            const status1 = document.getElementById('status1');
+            const dev = document.getElementById('dev');
+            const dot = document.getElementById('dot');
+            const dev1 = document.getElementById('dev1');
+            const dot1 = document.getElementById('dot1');
+
+            var d = new Date();
+            var day = d.getDate();
+            var month = d.getMonth();
+            var year = d.getFullYear();
+            var hour = d.getHours();
+            var min = d.getMinutes();
+
+            // READ VAL FROM REALTIMEDB AND WRITE IT ON FIRESTORE 
+            dataRef2.on("value", function (snapshot) {
+                var dataIn = snapshot.val();
+
+                dataRef3.on("value", function (snapshot1) {
+                    var dataOut = snapshot1.val();
+
+                    dataRef4.on("value", function (snapshot2) {
+                        var count = snapshot2.val();
+                        updateFirestore(dataIn, dataOut, count);
+                    });
+                });
+            });
+
+            var collectionName = "records";
+            var documentName = "rec";
+            var previousDate = new Date();
+
+
+            //  READ FROM REALTIMEDB IF SWITCH BEING TOGGLE/UNTOGGLE 
+            function myFunction() {
+                status.innerHTML = "Active for 1hr"
+                if (toggleSwitch1.checked) {
+                    firebaseRef.update({ row1: "1" });
+                    hideElement.style.opacity = "1";
+                    hideElement.style.transition = "opacity 1.8s";
+                    bulb.style.transform = "translateY(0vw)";
+                    bulb.style.transition = "0.5s";
+                    bulb.style.filter = "invert(0)";
+                    bulbBg.style.backgroundColor = "#FFCC00";
+                    bulbBg.style.transition = "0.5s";
+                    bulbIn.style.backgroundColor = "#FFDE59";
+                    bulbIn.style.transition = "0.5s";
+                    status.style.opacity = "1";
+                    status.style.transition = "opacity 0.2s";
+
+                } else {
+                    firebaseRef.update({ row1: "0" });
+                    hideElement.style.opacity = "0";
+                    hideElement.style.transition = "opacity 0.2s";
+                    bulb.style.transform = "translateY(-1vw)";
+                    bulb.style.transition = "0.5s";
+                    bulb.style.filter = "invert(10%)";
+                    bulbBg.style.backgroundColor = "#c9b14b";
+                    bulbBg.style.transition = "0.5s";
+                    bulbIn.style.backgroundColor = "#e3c859";
+                    bulbIn.style.transition = "0.5s";
+                    status.style.opacity = "0";
+                    status.style.transition = "opacity 2s";
+
+                }
+            }
+            const interval = setInterval(myFunction, 500);
+
+            function myFunction1() {
+                status1.innerHTML = "Active for 1hr"
+                if (toggleSwitch2.checked) {
+                    firebaseRef.update({ row2: "1" });
+                    hideElement1.style.opacity = "1";
+                    hideElement1.style.transition = "opacity 1.8s"
+                    bulb1.style.transform = "translateY(0vw)";
+                    bulb1.style.transition = "0.5s";
+                    bulb1.style.filter = "invert(0)";
+                    bulbBg1.style.backgroundColor = "#FFCC00";
+                    bulbBg1.style.transition = "0.5s";
+                    bulbIn1.style.backgroundColor = "#FFDE59";
+                    bulbIn1.style.transition = "0.5s";
+                    status1.style.opacity = "1";
+                    status1.style.transition = "opacity 0.2s";
+
+                } else {
+                    firebaseRef.update({ row2: "0" });
+                    hideElement1.style.opacity = "0";
+                    hideElement1.style.transition = "opacity 0.2s";
+                    bulb1.style.transform = "translateY(-1vw)";
+                    bulb1.style.transition = "0.5s";
+                    bulb1.style.filter = "invert(10%)";
+                    bulbBg1.style.backgroundColor = "#c9b14b";
+                    bulbBg1.style.transition = "0.5s";
+                    bulbIn1.style.backgroundColor = "#e3c859";
+                    bulbIn1.style.transition = "0.5s";
+                    status1.style.opacity = "0";
+                    status1.style.transition = "opacity 0.2s";
+
+
+                }
+            }
+            const interval1 = setInterval(myFunction1, 500);
+            const interval2 = setInterval(myFunction2, 500);
+            const interval3 = setInterval(myFunction3, 500);
+
+            // READ FROM REALTIMEDB IF ESP/RPI ONLINE/OFFLINE AND DISPLAY
+            function myFunction2() {
+                devDataRef.on('value', function (getdata6) {
+                    if (getdata6.val() == '1') {
+                        dev.innerHTML = "ONLINE";
+                        dot.style.backgroundColor = "#57D987";
+                        dot.style.border = "0.3vw solid #72EFA0";
+                        dev.style.color = "black";
+                    }
+                    else {
+                        dev.innerHTML = "OFFLINE";
+                        dot.style.backgroundColor = "#D4D4D4";
+                        dot.style.border = "0.3vw solid #c0c5c2";
+                        dev.style.color = "#c0c5c2";
+                    }
+                })
+            }
+            function myFunction3() {
+                cpuRef.on('value', function (getdata7) {
+                    var temp = getdata7.val();
+                    dev1.innerHTML = temp + "°C";
+                    dot1.style.backgroundColor = "#57D987";
+                    dot1.style.border = "0.3vw solid #72EFA0";
+                    dev1.style.color = "black";
+
+                })
+            }
+            dataRef1.on('value', function (getdata1) {
+                var pplins = getdata1.val();
+                document.getElementById('peopleInside').innerHTML = pplins;
+
+            })
+            dataRef2.on('value', function (getdata2) {
+                var peopleIn = getdata2.val();
+                document.getElementById('peopleIn').innerHTML = peopleIn;
+            })
+            dataRef3.on('value', function (getdata3) {
+                var peopleOut = getdata3.val();
+                document.getElementById('peopleOut').innerHTML = peopleOut;
+            })
+            dataRef4.on('value', function (getdata4) {
+                var r1 = getdata4.val();
+                document.getElementById('check1').innerHTML = r1;
+                if (r1 == '1') {
+                    toggleSwitch1.checked = true;
+                }
+                else {
+                    toggleSwitch1.checked = false;
+                }
+            })
+            dataRef5.on('value', function (getdata5) {
+                var r2 = getdata5.val();
+                document.getElementById('check2').innerHTML = r2;
+                if (r2 == '1') {
+                    toggleSwitch2.checked = true;
+                }
+                else {
+                    toggleSwitch2.checked = false;
+                }
+            })
+        </script>
+
+
+
+
+
+
+</body>
+
+</html>
